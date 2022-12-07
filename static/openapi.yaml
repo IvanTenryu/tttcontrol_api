@@ -1,0 +1,624 @@
+openapi: 3.0.0
+info:
+  description: |
+    Danae Juárez Escalera & Ivan Israel Valencia Barreda. SWAGGER Documentation for Final Residence Report.
+  version: "1.0.0"
+  title: TTT Control API
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: description
+    url: https://#
+  - url: 'https://localhost:5000' # Server or base path
+tags:
+  - name: change_log
+    description: change_log
+  - name: sim
+    description: sim
+  - name: user
+    description: user
+  - name: maintenance
+    description: maintenance
+  - name: installation
+    description: installation
+  - name: gps
+    description: gps
+    externalDocs:
+      description: Find out more about our store
+      url: 'http://#'
+paths:
+
+  /change_log/query:
+    get:
+      tags:
+        - change_log
+      summary: (get) Show all registers in database table
+      description: >-
+        (get) Show all registers in database table
+      operationId: change_log_query
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChangeLog'
+  /change_log/query/{id}:
+    get:
+      tags:
+        - change_log
+      summary: (get) Show the specific register who match with the id
+      description: >-
+        (get) Show the specific register who match with the id
+      operationId: change_log_query_id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: (int) id number of the log
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangeLog'
+        '400':
+          description: log with the id {id}, not found
+  /change_log/add:
+    post:
+      tags:
+        - change_log
+      summary: (post) Insert a new register
+      operationId: change_log_add
+      responses:
+        '400':
+          description: one or more json parameters not found
+      requestBody:
+        $ref: '#/components/requestBodies/ChangeLog'
+  /change_log/update/{id}:
+    post:
+      tags:
+        - change_log
+      summary: (post) Update specific register
+      operationId: change_log_updat_id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: (int) id number of the user to update
+      responses:
+        '400':
+          description: log with the id {id}, not found
+      requestBody:
+        $ref: '#/components/requestBodies/ChangeLog'
+
+  /gps/query:
+    get:
+      tags:
+        - gps
+      summary: (get) Show all registers in database table
+      description: >-
+        (get) Show all registers in database table
+      operationId: gps_query
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Gps'
+  /gps/query/{serial}:
+    get:
+      tags:
+        - gps
+      summary: (get) Show the specific register who match with the id
+      description: >-
+        (get) Show the specific register who match with the id
+      operationId: gps_query_serial
+      parameters:
+        - in: path
+          name: serial
+          schema:
+            type: integer
+          required: true
+          description: (int) serial number of the gps
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gps'
+        '400':
+          description: Gps with the serial {serial}, not found
+  /gps/add:
+    post:
+      tags:
+        - gps
+      summary: (post) Insert a new register
+      operationId: gps_add
+      responses:
+        '400':
+          description: one or more json parameters not found
+      requestBody:
+        $ref: '#/components/requestBodies/Gps'
+  /gps/update/{serial}:
+    post:
+      tags:
+        - gps
+      summary: (post) Update specific register
+      operationId: gps_update_serial
+      parameters:
+        - in: path
+          name: serial
+          schema:
+            type: integer
+          required: true
+          description: (int) serial number of the sim
+      responses:
+        '400':
+          description: Gps with the serial {serial}, not found
+      requestBody:
+        $ref: '#/components/requestBodies/Gps'
+
+  /installation/query:
+    get:
+      tags:
+        - installation
+      summary: (get) Show all registers in database table
+      description: >-
+        (get) Show all registers in database table
+      operationId: installation_query
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Installation'
+  /installation/query/{id}:
+    get:
+      tags:
+        - installation
+      summary: (get) Show the specific register who match with the id
+      description: >-
+        (get) Show the specific register who match with the id
+      operationId: installation_query_id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: (int) id number of the installation
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Installation'
+        '400':
+          description: Installation with the id {id}, not found
+  /installation/add:
+    post:
+      tags:
+        - installation
+      summary: (post) Insert a new register
+      operationId: installation_add
+      responses:
+        '400':
+          description: one or more json parameters not found
+      requestBody:
+        $ref: '#/components/requestBodies/Installation'
+  /installation/update/{id}:
+    post:
+      tags:
+        - installation
+      summary: (post) Update specific register
+      operationId: installation_update_id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: (int) id number of the user to update
+      responses:
+        '400':
+          description: log with the id {id}, not found
+      requestBody:
+        $ref: '#/components/requestBodies/Installation'
+
+  /maintenance/query:
+    get:
+      tags:
+        - maintenance
+      summary: (get) Show all registers in database table
+      description: >-
+        (get) Show all registers in database table
+      operationId: maintenance_query
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Maintenance'
+  /maintenance/query/{id}:
+    get:
+      tags:
+        - maintenance
+      summary: (get) Show the specific register who match with the id
+      description: >-
+        (get) Show the specific register who match with the id
+      operationId: maintenance_query_id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: (int) id number of the maintenance
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Maintenance'
+        '400':
+          description: log with the id {id}, not found
+  /maintenance/add:
+    post:
+      tags:
+        - maintenance
+      summary: (post) Insert a new register
+      operationId: maintenance_add
+      responses:
+        '400':
+          description: one or more json parameters not found
+      requestBody:
+        $ref: '#/components/requestBodies/Maintenance'
+  /maintenance/update/{id}:
+    post:
+      tags:
+        - maintenance
+      summary: (post) Update specific register
+      operationId: maintenance_update_id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: (int) id number of the user to update
+      responses:
+        '400':
+          description: log with the id {id}, not found
+      requestBody:
+        $ref: '#/components/requestBodies/Maintenance'
+
+  /user/query:
+    get:
+      tags:
+        - user
+      summary: (get) Show all registers in database table
+      description: >-
+        (get) Show all registers in database table
+      operationId: user_query
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /user/query/{id}:
+    get:
+      tags:
+        - user
+      summary: (get) Show the specific register who match with the id
+      description: >-
+        (get) Show the specific register who match with the id
+      operationId: user_query_id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: (int) id number of the user
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: user with the id {id}, not found
+  /user/add:
+    post:
+      tags:
+        - user
+      summary: (post) Insert a new register
+      operationId: user_add
+      responses:
+        '400':
+          description: one or more json parameters not found
+      requestBody:
+        $ref: '#/components/requestBodies/User'
+  /user/update/{id}:
+    post:
+      tags:
+        - user
+      summary: (post) Update specific register
+      operationId: user_update_id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: (int) id number of the user to update
+      responses:
+        '400':
+          description: log with the id {id}, not found
+      requestBody:
+        $ref: '#/components/requestBodies/User'
+
+  /sim/query:
+    get:
+      tags:
+        - sim
+      summary: (get) Show all registers in database table
+      description: >-
+        (get) Show all registers in database table
+      operationId: sim_query
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sim'
+  /sim/query/{telephone}:
+    get:
+      tags:
+        - sim
+      summary: (get) Show the specific register who match with the id
+      description: >-
+        (get) Show the specific register who match with the id
+      operationId: sim_query_telephone
+      parameters:
+        - in: path
+          name: telephone
+          schema:
+            type: integer
+          required: true
+          description: (int) telephone number of the sim
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sim'
+        '400':
+          description: log with the id {id}, not found
+  /sim/add:
+    post:
+      tags:
+        - sim
+      summary: (post) Insert a new register
+      operationId: sim_add
+      responses:
+        '400':
+          description: sim with the telephone, already exists
+      requestBody:
+        $ref: '#/components/requestBodies/Sim'
+  /sim/update/{telephone}:
+    post:
+      tags:
+        - change_log
+      summary: (post) Update specific register
+      operationId: sim_update_telephone
+      parameters:
+        - in: path
+          name: telephone
+          schema:
+            type: integer
+          required: true
+          description: (int) telephone number of the sim
+      responses:
+        '400':
+          description: one or more json parameters not found
+      requestBody:
+        $ref: '#/components/requestBodies/Sim'
+
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://#'
+components:
+  schemas:
+    ChangeLog:
+      type: object
+      properties:
+        gps_serial:
+          type: integer
+        date:
+          type: string
+          format: date-time
+        type: 
+          type: string
+        previous_value:
+          type: integer
+        new_value: 
+          type: integer
+    Sim:
+      type: object
+      properties:
+        telephone:
+          type: integer
+        account:
+          type: string
+        father_account: 
+          type: string
+        iccid:
+          type: string
+        status:
+          type: integer
+        cancellation_date:
+          type: string
+          format: date-time
+        updated_by: 
+          type: integer
+      required:
+        - updated_by
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        login:
+          type: string
+        password:
+          type: string
+        user_type:
+          type: integer
+        status:
+          type: integer
+        updated_by:
+          type: integer
+    Maintenance:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        economic_number:
+          type: string
+        issue_description:
+          type: string
+        gps_tag:
+          type: string
+        fuse_status:
+          type: string
+        installation_energy_type:
+          type: string
+        installation_status:
+          type: string
+        switch:
+          type: string
+        new_tag:
+          type: string
+        user_validator:
+          type: string
+        user_id:
+          type: integer
+        updated_by:
+          type: integer             
+    Installation:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        date:
+          type: string
+          format: date-time
+        vehicle_description:
+          type: string
+        plate:
+          type: string
+        gps_tag:
+          type: string
+        fuse_status:
+          type: string
+        installation_energy_type:
+          type: string
+        ignition_control:
+          type: integer
+        ignition_detection:
+          type: integer
+        odometer:
+          type: integer
+        user_validator:
+          type: string
+        extra_control:
+          type: string
+        updated_by:
+          type: string
+    Gps:
+      type: object
+      properties:
+        serial:
+          type: integer
+        imei:
+          type: integer
+        description:
+          type: string
+        software_version:
+          type: string
+        firmware_version:
+          type: string
+        status:
+          type: integer
+        comments:
+          type: string
+        sim_telephone:
+          type: integer
+        created_by:
+          type: integer
+  requestBodies:
+    Gps:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Gps'
+    ChangeLog:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ChangeLog'
+    Installation:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Installation'
+    Sim:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Sim'
+    Maintenance:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Maintenance'
+    User:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
